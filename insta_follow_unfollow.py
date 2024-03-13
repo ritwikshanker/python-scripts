@@ -33,8 +33,8 @@ def check_following_back(followers, following):
 
 
 if __name__ == "__main__":
-    followers_json = load_json("followers_2.json")
-    following_json = load_json("following_2.json")["relationships_following"]
+    followers_json = load_json("followers.json")
+    following_json = load_json("following.json")["relationships_following"]
 
     followers = get_users(followers_json)
     print("Total Number of Followers : " + str(len(followers)))
