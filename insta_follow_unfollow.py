@@ -33,8 +33,8 @@ def check_following_back(followers, following):
 
 
 if __name__ == "__main__":
-    followers_json = load_json("followers.json")
-    following_json = load_json("following.json")["relationships_following"]
+    followers_json = load_json("followers_2.json")
+    following_json = load_json("following_2.json")["relationships_following"]
 
     followers = get_users(followers_json)
     print("Total Number of Followers : " + str(len(followers)))
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     print("Total Number of People not Following back : " + str(len(not_following_back)))
     print("Users not following you back:")
     for user in not_following_back:
-        print(user)
+        print(link('https://instagram.com/' + user + "/", user))
     print("\nTotal Number of People I'm not following back : " + str(len(me_not_following_back)))
     print("Users whom you are not following back:")
     for user in me_not_following_back:
