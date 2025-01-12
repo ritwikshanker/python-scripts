@@ -15,17 +15,6 @@ def get_users(json_data):
                 users.append(user_entry["value"])
     return users
 
-def link(uri, label=None):
-    if label is None: 
-        label = uri
-    parameters = ''
-
-    # OSC 8 ; params ; URI ST <name> OSC 8 ;; ST 
-    escape_mask = '\033]8;{};{}\033\\{}\033]8;;\033\\'
-
-    return escape_mask.format(parameters, uri, label)
-
-
 def check_following_back(followers, following):
     not_following_back = [user for user in following if user not in followers]
     me_not_following_back = [user for user in followers if user not in following]
@@ -44,9 +33,9 @@ if __name__ == "__main__":
     print("Total Number of People not Following back : " + str(len(not_following_back)))
     print("Users not following you back:")
     for user in not_following_back:
-        print(link('https://instagram.com/' + user + "/", user))
+        print('https://instagram.com/' + user + "/")
     print("\nTotal Number of People I'm not following back : " + str(len(me_not_following_back)))
     print("Users whom you are not following back:")
     for user in me_not_following_back:
-        print(link('https://instagram.com/' + user + "/", user))
+        print('https://instagram.com/' + user + "/")
 
