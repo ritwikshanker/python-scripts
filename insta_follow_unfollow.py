@@ -11,8 +11,17 @@ def get_users(json_data):
     for entry in json_data:
         user_data = entry.get("string_list_data", [])
         if user_data:
+            # For following.json, we need to extract the username from href
+            # The href format is "https://www.instagram.com/_u/username"
             for user_entry in user_data:
-                users.append(user_entry["value"])
+                href = user_entry.get("href", "")
+                if href and "/_u/" in href:
+                    # Extract username after "/_u/"
+                    username = href.split("/_u/")[-1]
+                    users.append(username)
+                elif "value" in user_entry:
+                    # For followers.json compatibility
+                    users.append(user_entry["value"])
     return users
 
 def check_following_back(followers, following):
